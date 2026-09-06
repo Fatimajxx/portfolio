@@ -93,7 +93,7 @@ app
 
 A shared library of Compose components, previewed and verified in isolation before being consumed by feature modules.
 
-![Design system component previews](designsystem-components.png)
+<img width="1526" height="761" alt="Screenshot 2026-09-06 153039" src="https://github.com/user-attachments/assets/ba1808bf-edf1-4abb-829d-ab2b78096949" />
 
 ```
 core.designsystem
@@ -502,13 +502,7 @@ val state: StateFlow<LoginUiState> = combine(
     networkMonitor.isOnline
 ) { uiState, online ->
     uiState.copy(
-        isOnline = online,
-        errorMessage = when {
-            !online -> DataError.Network.INTERNET_UNAVAILABLE.asUiText()
-            online && uiState.errorMessage == DataError.Network.INTERNET_UNAVAILABLE.asUiText() -> null
-            else -> uiState.errorMessage
-        }
-    )
+        isOnline = online)
 }.stateIn(
     scope = viewModelScope,
     started = SharingStarted.WhileSubscribed(5_000),
@@ -633,12 +627,19 @@ public class Episode {
 
 The Home screen's Compose layout is being built with adaptive layout in mind: the same screen reflows across compact and expanded window sizes rather than assuming a single fixed layout.
 
-**Compact width** (phone in portrait):
-
-![Home screen, compact width, top of feed](home-compact-1.png)
-
-![Home screen, compact width, scrolled to Made for You](home-compact-2.png)
-
-**Expanded width** (tablet / landscape):
-
-![Home screen, expanded width](home-expanded.png)
+<table>
+  <tr>
+          <td align="center">
+      <h3>Phone</h3>
+      <img width="300" height="700" alt="Screenshot 2026-09-06 165126" src="https://github.com/user-attachments/assets/8580cace-7794-42ef-b99a-1803c7a06c32" />
+    </td>
+    <td align="center">
+      <h3>Foldable</h3>
+      <img width="500" height="450" alt="Screenshot 2026-09-06 165106" src="https://github.com/user-attachments/assets/cefacbb1-27b9-420b-aa49-1e5678c68fef" />
+    </td>
+    <td align="center">
+      <h3>Tablet</h3>
+      <img width="700" height="620" alt="Screenshot 2026-09-06 165156" src="https://github.com/user-attachments/assets/c0338a83-150e-42aa-800e-9f96e2186288" />
+    </td>
+  </tr>
+</table>
